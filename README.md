@@ -40,6 +40,7 @@ This relationship is called a belongs to. a song can only have one artist.
 it's entirely by convention, if you misuse artist= your song instance will break. you make a contract with the code you create to use it as designed.
 
 why is that better
+consistency (changing an artist name)
 chaining of methods
 relationship behaviors
 
