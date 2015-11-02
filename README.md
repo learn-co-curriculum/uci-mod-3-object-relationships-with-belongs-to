@@ -1,47 +1,120 @@
-# Ruby Intro To Object Relationships with Belongs To
+# Ruby Intro To Object Relationships: "Belongs To"
 
-## Outline
+## Introduction
 
-We use a single class to represent each singular concept or model needed in our program.
+So far, we've mainly worked with classes that do not play well with others. In other words, we've defined classes that create objects that do not interact with other objects. Instead, they have methods that allow them to operate on themselves. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. A single dog could have a name and tell you their name but not have a play with another dog object.
 
-For a music management application, you could imagine having an Artist class to represent the artists in your library and a Song class to represent the songs. Each class would have a name. In the real world, these concepts of an artist and a song relate to eachother, how might we model that relationship through a metaphor in our code.
+In object-oriented programming, however, we write programs that model real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, 
+individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
 
-We know objects have properties. So far we've seen these properties point to simple values like a string or an integer. We call these base types of objects that come with ruby primitives, Integer, Array, Hash, etc.
+Here are just a few examples:
 
-For simple concepts and properties, these primitives do fine as values. But what about for "complex" property values such as a relationship.
+* Your users sign in to your app and "friend" other users. All of a sudden, users are associated through friendship.
+* Your app connects users to animal shelters through which they can adopt pets. Users are associated to shelters and to pets. At the same time shelters are associated to pets.
+* Your app allows users to aggregate their most recent tweets and those of their friends and followers. In this example, users are associated to tweets and users might even be associated to each other.
 
-Let's see what we might try and why the following example doesn't work.
+These are just a few examples of the sorts of domain models you will soon develop, almost all of which will involve object relations––the idea that instances of your classes (also referred to as models in such a situation) can interact with each other be associated with one another.
 
-```
-class Artist
-  attr_accessor :name
-end
+In this lesson, we'll be taking a look at one of the most basic ways that two classes, or models, can be related to one another: the "belongs to" relationship. 
 
+## The "Belongs To" Relationship
+
+Imagine we are creating an app that allows users to list and interact with their music library. We're used to writing single classes to represent single concepts in our program. In this application, it makes sense for us to have a class to represent an individual song. Our `Song` class might look something like this:
+
+```ruby
 class Song
-  attr_accessor :name, :artist
+  
+  attr_accessor :title
+  
+  def initialize(title)
+    @title = title
+  end
 end
-
-kanye = Artist.new
-kanye.name = "Kanye West"
-
-runaway = Song.new
-runaway.name = "Runaway"
-runaway.artist = "Kanye West"
 ```
 
-the string vs the object. but strings are objects. so are artists. Cant we just assign the object kanye as the value for the artist attribute of a song?
+Now we can create a new song like this:
 
-yes.
+```ruby
+hotline_bling = Song.new("Hotline Bling")
+```
 
-that example
+And we can return it's title to us like this:
 
-This relationship is called a belongs to. a song can only have one artist.
+```ruby
+hotline_bling.title
+  # => "Hotline Bling"
+```
 
-it's entirely by convention, if you misuse artist= your song instance will break. you make a contract with the code you create to use it as designed.
+As far as modeling our program on the real world however, this isn't very realistic. Songs have many more attributes that just a title. The most important of which, from a user's point of view at least, is the song's artist. In the real world, a song belongs to an artist and an artist owns the many songs he or she has created. How can we model this relationship through our code? Let's give individual songs an artist attribute:
 
-why is that better
-consistency (changing an artist name)
-chaining of methods
-relationship behaviors
+```ruby
+class Song
+  
+  attr_accessor :title
+  
+  def initialize(title)
+    @title = title
+  end
+  
+  def artist=(artist_name)
+    @artist_name = artist_name
+  end
+  
+  def artist
+    @artist_name
+  end
+end
+```
 
-what about artist.songs/kanye.songs? How do we make that work?
+Now that we have a setter and getter for a song's artist attribute, we can do this:
+
+```ruby
+hotline_bling.artist = "Drake"
+hotline_bling.artist
+  # => "Drake"
+```
+
+Now that a song can have an artist, we might be wondering what other attributes might be related to songs and artists in this domain model. 
+
+For example, users of our music app might want to know some more info about an individual artist. What albums have Drake created, for example? What about the genre of Drake's work?
+
+Let's ask him:
+
+```ruby
+hotline_bling.artist.genre
+  NoMethodError: undefined method `genre' for "Drake":String
+```
+
+Uh-oh! Looks like the string, `"Drake"`, that we assigned this song's `artist` attribute equal to, doesn't (shockingly) have a `#genre` method. The relationship model that we have set up is incomplete. An individual song does have an artist attribute, but instead of setting it equal to a complex object, such as an instance of some kind of `Artist` class, we've set it equal to a simple string. A string can't tell us what genre of music it makes, how many albums it has created or anything else necessary to modeling our music app. 
+
+So, instead of setting the `#artist=()` method equal to a string of an artist's name, let's create an `Artist` class and assign an individual song's artist attribute equal to an instance of that class. 
+
+```ruby
+class Artist
+  attr_accessor :name, :genre
+end
+``` 
+
+```ruby
+drake = Artist.new("Drake", "rap")
+
+hotline_bling.artist = drake
+```
+
+Just like we were able to set the artist attribute equal to the string, `"Drake"`, we can set the attribute equal to an instance of the artist class, stored in the `drake` local variable. 
+
+Now we can ask for the genre of the artist of `hotline_bling`:
+
+```ruby
+hotline_bling.artist.genre
+  # => "rap"
+```
+
+And the name of the artist of `hotline_bling`:
+
+```ruby
+hotline_bling.artist.name
+  # => "Drake"
+```
+
+Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist artist. 
