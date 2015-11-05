@@ -50,19 +50,12 @@ As far as modeling our program on the real world however, this isn't very realis
 ```ruby
 class Song
   
-  attr_accessor :title
+  attr_accessor :title, :artist
   
   def initialize(title)
     @title = title
   end
   
-  def artist=(artist_name)
-    @artist_name = artist_name
-  end
-  
-  def artist
-    @artist_name
-  end
 end
 ```
 
@@ -85,23 +78,28 @@ hotline_bling.artist.genre
   NoMethodError: undefined method `genre' for "Drake":String
 ```
 
-Uh-oh! Looks like the string, `"Drake"`, that we assigned this song's `artist` attribute equal to, doesn't (shockingly) have a `#genre` method. The relationship model that we have set up is incomplete. An individual song does have an artist attribute, but instead of setting it equal to a complex object, such as an instance of some kind of `Artist` class, we've set it equal to a simple string. A string can't tell us what genre of music it makes, how many albums it has created or anything else necessary to modeling our music app. 
+Uh-oh! Looks like the string, `"Drake"`, that we assigned this song's `artist` attribute equal to, doesn't (shockingly) have a `#genre` method. The relationship model that we have set up is incomplete. An individual song does have an artist attribute, but instead of setting it equal to a complex object, such as an instance of some kind of `Artist` class that we can get more information from, we've set it equal to a simple string. A string can't tell us what genre of music it makes, how many albums it has created or anything else necessary to modeling our music app. This makes sense. The developer of Ruby can only make building blocks. They can only create general purpose blocks that we compose into great creations. 
 
 So, instead of setting the `#artist=()` method equal to a string of an artist's name, let's create an `Artist` class and assign an individual song's artist attribute equal to an instance of that class. 
 
 ```ruby
 class Artist
   attr_accessor :name, :genre
-end
-``` 
 
-```ruby
+  def initialize(name, genre) 
+    @name = name
+    @genre = genre
+  end
+
+end
+
 drake = Artist.new("Drake", "rap")
+hotline_bling = Song.new("Hotline Bling")
 
 hotline_bling.artist = drake
 ```
 
-Just like we were able to set the artist attribute equal to the string, `"Drake"`, we can set the attribute equal to an instance of the artist class, stored in the `drake` local variable. 
+Just like we were able to set the artist attribute equal to the string, `"Drake"`, we can set the attribute equal to an instance of the `Artist` class, stored in the `drake` local variable. 
 
 Now we can ask for the genre of the artist of `hotline_bling`:
 
@@ -117,4 +115,4 @@ hotline_bling.artist.name
   # => "Drake"
 ```
 
-Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist artist. 
+Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist. There is nothing that requires that the artist attribute be filled with an instance of the `Artist` class. This is an internal contract that you must keep. As the developer you must make sure that you only put `Artist` instances in there!
