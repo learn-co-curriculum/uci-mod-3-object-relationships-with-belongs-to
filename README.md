@@ -2,10 +2,9 @@
 
 ## Introduction
 
-So far, we've mainly worked with classes that do not play well with other custom classes. In other words, we've defined classes that create objects that do not interact with other objects that we've created. Instead, they have methods that allow them to operate on themselves, or operate with some of the built-in Ruby classes. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. A single dog could have a name (as a Ruby String) q and tell you their name but not have a play with another dog object.
+So far, we've mainly worked with classes that do not play well with other custom classes. In other words, we've defined classes that create objects that do not interact with other objects that we've created. Instead, they have methods that allow them to operate on themselves, or operate with some of the built-in Ruby classes. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. A single dog could have a name (as a Ruby String)q and tell you their name but not have a play with another dog object.
 
-In object-oriented programming, however, we write programs that model real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, 
-individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
+In object-oriented programming, however, we write programs that model real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
 
 Here are just a few examples:
 
@@ -13,7 +12,7 @@ Here are just a few examples:
 * Your app connects users to animal shelters through which they can adopt pets. Users are associated to shelters and to pets. At the same time shelters are associated to pets.
 * Your app allows users to aggregate their most recent tweets and those of their friends and followers. In this example, users are associated to tweets and users might even be associated to each other.
 
-These are just a few examples of the sorts of domain models you will soon develop, almost all of which will involve object relations––the idea that instances of your classes (also referred to as models in such a situation) can interact with each other be associated with one another.
+These are just a few examples of the sorts of domain models you will soon develop, almost all of which will involve object relations––the idea that instances of your classes (also referred to as models in such a situation) can interact with each other and be associated with one another.
 
 In this lesson, we'll be taking a look at one of the most basic ways that two classes, or models, can be related to one another: the "belongs to" relationship. 
 
