@@ -115,3 +115,5 @@ hotline_bling.artist.name
 ```
 
 Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist. There is nothing that requires that the artist attribute be filled with an instance of the `Artist` class. This is an internal contract that you must keep. As the developer you must make sure that you only put `Artist` instances in there!
+
+<a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' data-visibility='hidden'>View this lesson on Learn.co</a>
