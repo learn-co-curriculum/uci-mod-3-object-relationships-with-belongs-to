@@ -68,7 +68,7 @@ hotline_bling.artist
 
 Now that a song can have an artist, we might be wondering what other attributes might be related to songs and artists in this domain model. 
 
-For example, users of our music app might want to know some more info about an individual artist. What albums have Drake created, for example? What about the genre of Drake's work?
+For example, users of our music app might want to know some more info about an individual artist. What albums has Drake created, for example? What about the genre of Drake's work?
 
 Let's ask him:
 
