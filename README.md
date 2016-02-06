@@ -44,7 +44,7 @@ hotline_bling.title
   # => "Hotline Bling"
 ```
 
-As far as modeling our program on the real world however, this isn't very realistic. Songs have many more attributes that just a title. The most important of which, from a user's point of view at least, is the song's artist. In the real world, a song belongs to an artist and an artist owns the many songs he or she has created. How can we model this relationship through our code? Let's give individual songs an artist attribute:
+As far as modeling our program on the real world however, this isn't very realistic. Songs have many more attributes than just a title. The most important of which, from a user's point of view at least, is the song's artist. In the real world, a song belongs to an artist and an artist owns the many songs he or she has created. How can we model this relationship through our code? Let's give individual songs an artist attribute:
 
 ```ruby
 class Song
@@ -116,4 +116,6 @@ hotline_bling.artist.name
 
 Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist. There is nothing that requires that the artist attribute be filled with an instance of the `Artist` class. This is an internal contract that you must keep. As the developer you must make sure that you only put `Artist` instances in there!
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' title='Ruby Intro To Object Relationships: "Belongs To"'>Ruby Intro To Object Relationships: "Belongs To"</a> on Learn.co and start learning to code for free.</p>
+<a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' data-visibility='hidden'>View this lesson on Learn.co</a>
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
