@@ -37,7 +37,7 @@ Now we can create a new song like this:
 hotline_bling = Song.new("Hotline Bling")
 ```
 
-And we can return it's title to us like this:
+And we can return its title to us like this:
 
 ```ruby
 hotline_bling.title
@@ -119,3 +119,5 @@ Now our relationship between songs and their artists is complete. **This is call
 <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' data-visibility='hidden'>View this lesson on Learn.co</a>
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
