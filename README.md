@@ -2,7 +2,34 @@
 
 ## Introduction
 
-So far, we've mainly worked with classes that do not play well with other custom classes. In other words, we've defined classes that create objects that do not interact with other objects that we've created. Instead, they have methods that allow them to operate on themselves, or operate with some of the built-in Ruby classes. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. A single dog could have a name (as a Ruby String) and tell you their name but not have it play with another dog object.
+So far, we've mainly worked with classes that do not play well with other custom classes. In other words, we've defined classes that create objects that do not interact with other objects that we've created. Instead, they have methods that allow them to operate on themselves, or operate with some of the built-in Ruby classes. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. 
+
+```ruby
+lass Dog
+  attr_reader :name, :size, temperament
+	def initialize(name, size, temperament)
+    @name = name
+    @size = size
+    @temperament = temperament
+  end
+
+  def bark
+    if quiet?
+      puts "#{name}, the #{size} dog, says rf"
+    else
+      puts "#{name}, the #{size} dog, says RUFF!"
+    end
+  end
+
+  def quiet?
+    temperament == 'quiet'
+  end
+end
+```
+
+Here we have a class that changes the way a dog barks based on its
+temperament. This object isn't capable of interacting with any other dog object
+though.
 
 In object-oriented programming, however, we write programs that model real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
 
