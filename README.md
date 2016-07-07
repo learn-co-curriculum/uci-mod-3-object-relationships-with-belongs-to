@@ -5,7 +5,7 @@
 So far, we've mainly worked with classes that do not play well with other custom classes. In other words, we've defined classes that create objects that do not interact with other objects that we've created. Instead, they have methods that allow them to operate on themselves, or operate with some of the built-in Ruby classes. For example, a `Dog` class might have methods that describe an individual dog's attributes and behaviors. 
 
 ```ruby
-lass Dog
+class Dog
   attr_reader :name, :size, temperament
 	def initialize(name, size, temperament)
     @name = name
