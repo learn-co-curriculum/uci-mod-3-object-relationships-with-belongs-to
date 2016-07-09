@@ -6,8 +6,8 @@ So far, we've mainly worked with classes that do not play well with other custom
 
 ```ruby
 class Dog
-  attr_reader :name, :size, temperament
-	def initialize(name, size, temperament)
+  attr_reader :name, :size, :temperament
+  def initialize(name, size, temperament)
     @name = name
     @size = size
     @temperament = temperament
@@ -143,8 +143,4 @@ hotline_bling.artist.name
 
 Now our relationship between songs and their artists is complete. **This is called the "belongs to" relationship**. A song can only have one artist (at least in our domain model), so we say that a song "belongs to" an artist. We enact this relationship by giving songs a setter and a getter method for their artist. There is nothing that requires that the artist attribute be filled with an instance of the `Artist` class. This is an internal contract that you must keep. As the developer you must make sure that you only put `Artist` instances in there!
 
-<a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' data-visibility='hidden'>View this lesson on Learn.co</a>
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-intro-to-object-relationships-with-belongs-to' title='Intro to Object Relationships'>Intro to Object Relationships</a> on Learn.co and start learning to code for free.</p>
