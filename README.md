@@ -31,7 +31,7 @@ Here we have a class that changes the way a dog barks based on its
 temperament. This object isn't capable of interacting with any other dog object
 though.
 
-In object-oriented programming, however, we write programs that model real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
+In object-oriented programming, however, we write programs that reflect real-world situations and environments. In the real world, different entities are related to one another and interact with one another in various ways. Luckily for us, individual objects in object-oriented Ruby can interact with one another in ways that reflect that real-world relatedness. In fact, it's hard to imagine an application without some degree of interaction, or association, between your classes, or models. 
 
 Here are just a few examples:
 
